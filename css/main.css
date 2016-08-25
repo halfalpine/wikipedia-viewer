@@ -1,0 +1,58 @@
+h1 {
+  margin-top: 5%;
+}
+
+div {
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+}
+
+button {
+  background-color: #grey;
+  color: white;
+  height: 100%;
+  font-size: .75em;
+  border: 1 solid black;
+  border-radius: 10%;
+  cursor: pointer;
+}
+
+.search-result-item {
+  background-color: lightblue;
+  padding: 2% 4%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 80%;
+  border: 1px solid black;
+  border-radius: 1%;
+  font-family: arial, sans-serif;
+  margin-left:auto;
+  margin-right: auto;
+}
+
+.search-result-item:hover {
+  border: 3px solid black;
+}
+
+li > a {
+  font-weight: bold;
+}
+
+#results {
+  text-align: left;
+}
+
+#searchbar {
+  font-size: 2em;
+}
+
+#search-stuff {
+  margin: .5em;
+}
+
+#search-stuff.extract {
+  font-size: 1em;
+}

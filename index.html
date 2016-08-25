@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Wikipedia Viewer</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <div id="container">
+    <h1>Wikipedia Viewer</h1>
+    <div id="main">
+      <form action="https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json" method="get">
+        <div id="search-stuff">
+          <label for="searchbar">Search Wikipedia:</label>
+          <input type="search" id="searchbar" autofocus="" />
+        </div>
+        <div>
+          <button type="button" id="random" target="_blank">Random Article</button>
+          <button type="submit" id="search">Search!</button>
+        </div>
+      </form>
+      <div id="results">
+        <ul id="results-list"></ul>
+      </div>
+    </div>
+  </div>
+  <p id="test"></p>
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+  <script src="js/mainx.js"></script>
+</body>
+</html>
