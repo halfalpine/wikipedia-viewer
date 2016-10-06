@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+  // Event handlers
   $("#random").on("click", function() {
     window.open("https://en.wikipedia.org/wiki/Special:Random");
   });
@@ -14,15 +15,14 @@ $(document).ready(function() {
 
   function getSearch() {
     var searchFor = $("#searchbar").val();
-    $.getJSON("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exlimit=max&exintro&generator=search&gsrsearch=" + searchFor + "&callback=?", showResults);
+    $.getJSON("https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exlimit=max&exintro&generator=search&gsrsearch=" + searchFor + "&callback=?", showResults);
   }
 
-  function showResults(data) {
-    console.log(data)
-    var raw_json = data;
+  function showResults(raw_json) {
+    var pages;
     $("#results-list").empty();
     if (raw_json && raw_json.query && raw_json.query.pages) {
-      var pages = raw_json.query.pages;
+      pages = raw_json.query.pages;
     } else {
       $("#results").html("Search error!");
     }
