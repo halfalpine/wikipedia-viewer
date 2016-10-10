@@ -15,7 +15,7 @@ $(document).ready(function() {
 
   function getSearch() {
     var searchFor = $("#searchbar").val();
-    $.getJSON("https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exlimit=max&exintro&generator=search&gsrsearch=" + searchFor + "&callback=?", showResults);
+    $.getJSON("https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&limit=10&namespace=0&search=" + searchFor + "&callback=?"/*, showResults*/);
   }
 
   function showResults(raw_json) {
@@ -27,8 +27,9 @@ $(document).ready(function() {
       $("#results").html("Search error!");
     }
     for (var id in pages) {
+      console.log(id);
       if (pages[id].title && pages[id].extract) {
-        $("#results-list").append("<li><ul class='search-result-item'><li><a href='http://en.wikipedia.org/?curid=" + pages[id].pageid + "' target='_blank'>" + pages[id].title + "</a></li><li class='extract'>" + pages[id].extract) + "</li></ul>";
+        $("#results-list").append("<li><p class='search-result-item'><p><a href='http://en.wikipedia.org/?curid=" + pages[id].pageid + "' target='_blank'>" + pages[id].title + "</a></p><p class='extract'>" + pages[id].extract) + "</p></p></li>";
       }
       else {
         $("#results").html("Search error!");
