@@ -15,7 +15,8 @@ $(document).ready(function() {
 
   function getSearch() {
     var searchFor = $("#searchbar").val();
-    $.getJSON("https://en.wikipedia.org/w/api.php?action=opensearch&format=json&formatversion=2&limit=10&namespace=0&search=" + searchFor + "&callback=?"/*, showResults*/);
+    console.log(`the search value is ${searchFor}`);
+    $.getJSON(`https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&list=search&srsearch= + ${searchFor} + &prop=extracts&exlimit=10&exchars=100&callback=?`/*, showResults*/);
   }
 
   function showResults(raw_json) {
