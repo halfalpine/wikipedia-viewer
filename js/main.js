@@ -1,10 +1,14 @@
+let wikiSearch = (function() {
+  
+})();
+
 $(document).ready(function() {
 
+  // Event handlers
   $("#random").on("click", function() {
     window.open("https://en.wikipedia.org/wiki/Special:Random");
     clearSearch();
   });
-
   $("#search").on("click", getSearch);
 
   function clearSearch() {
