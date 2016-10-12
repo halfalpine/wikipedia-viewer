@@ -1,9 +1,4 @@
 let wikiSearch = (function() {
-  
-})();
-
-$(document).ready(function() {
-
   // Event handlers
   $("#random").on("click", function() {
     window.open("https://en.wikipedia.org/wiki/Special:Random");
@@ -42,4 +37,12 @@ $(document).ready(function() {
     clearSearch();
   }
 
+  return {
+    random: random,
+    search: search
+  };
+})();
+
+$(document).ready(function() {
+  wikiSearch;
 });
