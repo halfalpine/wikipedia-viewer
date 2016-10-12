@@ -11,17 +11,19 @@ $(document).ready(function() {
     $("#searchbar").val("");
   }
 
-  function getSearch() {
+  function getSearch(e) {
+    e.preventDefault();
     var searchFor = $("#searchbar").val();
     $.getJSON("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exlimit=max&exintro&generator=search&gsrsearch=" + searchFor + "&callback=?", showResults);
   }
 
   function showResults(data) {
+    var pages;
     console.log(data);
     var raw_json = data;
     $("#results-list").empty();
     if (raw_json && raw_json.query && raw_json.query.pages) {
-      var pages = raw_json.query.pages;
+      pages = raw_json.query.pages;
     } else {
       $("#results").html("Search error!");
     }
