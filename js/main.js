@@ -6,14 +6,22 @@ let wikiSearch = (function() {
   });
   $("#search").on("click", getSearch);
 
+  function callWikiAPI() {
+    $.getJSON("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exlimit=max&exintro&generator=search&gsrsearch=" + searchFor + "&callback=?", showResults);
+  }
+
   function clearSearch() {
     $("#searchbar").val("");
   }
 
   function getSearch(e) {
-    e.preventDefault();
     var searchFor = $("#searchbar").val();
-    $.getJSON("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exlimit=max&exintro&generator=search&gsrsearch=" + searchFor + "&callback=?", showResults);
+    e.preventDefault();
+    searchFor ? callWikiAPI() : returnInvalidInput();
+  }
+
+  function returnInvalidInput() {
+    console.log('invalid input!');
   }
 
   function showResults(data) {
@@ -34,6 +42,8 @@ let wikiSearch = (function() {
     }
     clearSearch();
   }
+
+
 
   return {
     random: random,
