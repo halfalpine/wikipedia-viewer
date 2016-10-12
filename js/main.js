@@ -17,21 +17,19 @@ let wikiSearch = (function() {
   }
 
   function showResults(data) {
-    var pages;
     console.log(data);
-    var raw_json = data;
     $("#results-list").empty();
-    if (raw_json && raw_json.query && raw_json.query.pages) {
+    if (data && data.query && data.query.pages) {
       pages = raw_json.query.pages;
     } else {
-      $("#results").html("Search error!");
+      $("#results").html("Search error 1!");
     }
     for (var id in pages) {
       if (pages[id].title && pages[id].extract) {
         $("#results-list").append("<li><ul class='search-result-item'><li><a href='http://en.wikipedia.org/?curid=" + pages[id].pageid + "' target='_blank'>" + pages[id].title + "</a></li><li class='extract'>" + pages[id].extract) + "</li></ul>";
       }
       else {
-        $("#results").html("Search error!");
+        $("#results").html("Search error 2!");
       }
     }
     clearSearch();
