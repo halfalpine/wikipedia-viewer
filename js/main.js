@@ -20,7 +20,7 @@ let wikiSearch = (function() {
     console.log(data);
     $("#results-list").empty();
     if (data && data.query && data.query.pages) {
-      pages = raw_json.query.pages;
+      pages = data.query.pages;
     } else {
       $("#results").html("Search error 1!");
     }
