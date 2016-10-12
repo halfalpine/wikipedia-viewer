@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-  // Event handlers
   $("#random").on("click", function() {
     window.open("https://en.wikipedia.org/wiki/Special:Random");
   });
@@ -15,22 +14,21 @@ $(document).ready(function() {
 
   function getSearch() {
     var searchFor = $("#searchbar").val();
-    console.log(`the search value is ${searchFor}`);
-    $.getJSON(`https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&list=search&srsearch= + ${searchFor} + &prop=extracts&exlimit=10&exchars=100&callback=?`/*, showResults*/);
+    $.getJSON("https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exlimit=max&exintro&generator=search&gsrsearch=" + searchFor + "&callback=?", showResults);
   }
 
-  function showResults(raw_json) {
-    var pages;
+  function showResults(data) {
+    console.log(data);
+    var raw_json = data;
     $("#results-list").empty();
     if (raw_json && raw_json.query && raw_json.query.pages) {
-      pages = raw_json.query.pages;
+      var pages = raw_json.query.pages;
     } else {
       $("#results").html("Search error!");
     }
     for (var id in pages) {
-      console.log(id);
       if (pages[id].title && pages[id].extract) {
-        $("#results-list").append("<li><p class='search-result-item'><p><a href='http://en.wikipedia.org/?curid=" + pages[id].pageid + "' target='_blank'>" + pages[id].title + "</a></p><p class='extract'>" + pages[id].extract) + "</p></p></li>";
+        $("#results-list").append("<li><ul class='search-result-item'><li><a href='http://en.wikipedia.org/?curid=" + pages[id].pageid + "' target='_blank'>" + pages[id].title + "</a></li><li class='extract'>" + pages[id].extract) + "</li></ul>";
       }
       else {
         $("#results").html("Search error!");
