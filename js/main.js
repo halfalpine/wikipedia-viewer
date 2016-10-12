@@ -2,11 +2,10 @@ $(document).ready(function() {
 
   $("#random").on("click", function() {
     window.open("https://en.wikipedia.org/wiki/Special:Random");
+    clearSearch();
   });
-  $("#random").on("click", clearSearch);
 
   $("#search").on("click", getSearch);
-  $("#search").on("click", clearSearch);
 
   function clearSearch() {
     $("#searchbar").val("");
@@ -34,6 +33,7 @@ $(document).ready(function() {
         $("#results").html("Search error!");
       }
     }
+    clearSearch();
   }
 
 });
